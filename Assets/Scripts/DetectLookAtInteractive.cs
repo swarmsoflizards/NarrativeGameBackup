@@ -19,17 +19,16 @@ public class DetectLookAtInteractive : MonoBehaviour
         bool ObjectDetected = Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hitInfo, maxRange); //Cast ray
         Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray in scene
 
-        IInteractive interactive = null;
+        IInteractive interactive = null; //Store object being interacted with
 
-        if (ObjectDetected == true)
+        if (ObjectDetected == true) //If there is any object detected by ray
         {
-            //Debug.Log($"Looking at: { hitInfo.collider.gameObject.name}");
-            interactive = hitInfo.collider.gameObject.GetComponent<IInteractive>();
+            interactive = hitInfo.collider.gameObject.GetComponent<IInteractive>(); //Get the info of the object
         }
 
-        if (interactive != null)
+        if (interactive != null) //If there is an interactive object
         {
-            interactive.InteractWith();
+            interactive.InteractWith(); //Interact with it
         }
     }
 
