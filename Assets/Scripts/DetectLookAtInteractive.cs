@@ -13,6 +13,8 @@ public class DetectLookAtInteractive : MonoBehaviour
     [Tooltip("How far from the raycastOrigin to search for interactive elements.")]
     [SerializeField]float maxRange = 5.0f;
 
+    public IInteractive lookedAtInteractive; //Store the interactive being looked at
+
     private void FixedUpdate()
     {
         RaycastHit hitInfo; //Store info about object hit
@@ -28,7 +30,7 @@ public class DetectLookAtInteractive : MonoBehaviour
 
         if (interactive != null) //If there is an interactive object
         {
-            interactive.InteractWith(); //Interact with it
+            lookedAtInteractive = interactive; //Set the interactive being looked at in interactive
         }
     }
 

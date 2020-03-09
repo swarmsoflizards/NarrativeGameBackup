@@ -9,7 +9,8 @@ using UnityEngine;
 
 public class InteractWithLookedAt : MonoBehaviour
 {
-    // Update is called once per frame
+    [SerializeField] private DetectLookAtInteractive detectLookedAtInteractive;
+
     void Update()
     {
         if (Input.GetButton("Interact"))
