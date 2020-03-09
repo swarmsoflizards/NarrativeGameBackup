@@ -11,9 +11,15 @@ public class DetectLookAtInteractive : MonoBehaviour
     [Tooltip("Starting point of raycast used to detect interactives.")]
     [SerializeField] private Transform raycastOrigin;
     [Tooltip("How far from the raycastOrigin to search for interactive elements.")]
-    [SerializeField]float maxRange = 5.0f;
+    [SerializeField] float maxRange = 5.0f;
 
-    public IInteractive lookedAtInteractive; //Store the interactive being looked at
+    public IInteractive LookedAtInteractive //Property controls ability to access values
+    {
+        get { return lookedAtInteractive; }
+        private set { lookedAtInteractive = value; } //Only allow value to be changed in this class
+    }
+
+    private IInteractive lookedAtInteractive; //Store the interactive being looked at
 
     private void FixedUpdate()
     {
@@ -22,6 +28,8 @@ public class DetectLookAtInteractive : MonoBehaviour
         Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray in scene
 
         IInteractive interactive = null; //Store object being interacted with
+
+        LookedAtInteractive = interactive; //Change variable to value being passed in
 
         if (ObjectDetected == true) //If there is any object detected by ray
         {
