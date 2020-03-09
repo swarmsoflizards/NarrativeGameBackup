@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Detects elements the player is looking at
+/// </summary>
+
 public class DetectLookAtInteractive : MonoBehaviour
 {
     [Tooltip("Starting point of raycast used to detect interactives.")]
@@ -15,9 +19,17 @@ public class DetectLookAtInteractive : MonoBehaviour
         bool ObjectDetected = Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hitInfo, maxRange); //Cast ray
         Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray in scene
 
+        IInteractive interactive = null;
+
         if (ObjectDetected == true)
         {
-            Debug.Log($"Looking at: { hitInfo.collider.gameObject.name}");
+            //Debug.Log($"Looking at: { hitInfo.collider.gameObject.name}");
+            interactive = hitInfo.collider.gameObject.GetComponent<IInteractive>();
+        }
+
+        if (interactive != null)
+        {
+            interactive.InteractWith();
         }
     }
 
