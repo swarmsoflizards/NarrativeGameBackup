@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Detects when the player presses the interact button while looking at an IInteractive,
+/// and then calls that IInteractive's method
+/// </summary>
+
 public class InteractWithLookedAt : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        
+        if ()
+        {
+
+        }
     }
 }
