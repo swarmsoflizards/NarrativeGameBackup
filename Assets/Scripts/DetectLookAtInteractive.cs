@@ -9,11 +9,10 @@ public class DetectLookAtInteractive : MonoBehaviour
     [Tooltip("How far from the raycastOrigin to search for interactive elements.")]
     [SerializeField]float maxRange = 5.0f;
 
-    private Vector3 raycastDirection;
-
     private void FixedUpdate()
     {
-        Physics.Raycast(raycastOrigin.position, raycastDirection, maxRange); 
+        Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, maxRange); //Cast ray
+        Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray
     }
 
 }
