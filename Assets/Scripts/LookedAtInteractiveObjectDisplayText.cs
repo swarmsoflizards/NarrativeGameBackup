@@ -1,18 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+/// <summary>
+/// This UI text displays info about the currently looked at interactive IInteractive.
+/// The text should be hidden if the player is not currently looking at an interactive element.
+/// </summary>
 
 public class LookedAtInteractiveObjectDisplayText : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private IInteractive lookedAtInteractiveObject;
+    private Text displayText;
+
+    private void Awake()
     {
-        
+        displayText = GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateDisplayText()
     {
-        
+        if (lookedAtInteractiveObject != null)
+        {
+            displayText.text = lookedAtInteractiveObject.DisplayText;
+        }
+        else
+        {
+            displayText.text = string.Empty;
+        }
     }
 }

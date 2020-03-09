@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class InteractiveObject : MonoBehaviour, IInteractive
 {
+    [SerializeField] private string displayText;
+
+    public string DisplayText => displayText; 
+
     public void InteractWith()
     {
         Debug.Log($"Player can interact with {gameObject.name}.");
