@@ -786,7 +786,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c42b585b9eb423489d1572166e9e3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectLookedAtInteractive: {fileID: 378237293}
 --- !u!1 &439377150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3315,6 +3314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be8818ab5e651042939414c80bd6554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayText: Test Cube
 --- !u!65 &1031443632
 BoxCollider:
   m_ObjectHideFlags: 0
