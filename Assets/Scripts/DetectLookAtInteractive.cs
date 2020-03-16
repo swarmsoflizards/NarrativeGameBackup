@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,10 +14,24 @@ public class DetectLookAtInteractive : MonoBehaviour
     [Tooltip("How far from the raycastOrigin to search for interactive elements.")]
     [SerializeField] float maxRange = 5.0f;
 
+    /// <summary>
+    /// Event raised whem the player looks at a different IInteractive
+    /// </summary>
+
+    public static event Action LookedAtInteractiveChanged;
+
     public IInteractive LookedAtInteractive //Property controls ability to access values
     {
         get { return lookedAtInteractive; }
-        private set { lookedAtInteractive = value; } //Only allow value to be changed in this class
+        private set
+        {
+            bool isInteractiveChanged = value != lookedAtInteractive; //If LookedAtInteractive has changed, set bool to true
+            if (isInteractiveChanged)
+            {
+
+            }
+            lookedAtInteractive = value; //Only allow value to be changed in this class
+        } 
     }
 
     private IInteractive lookedAtInteractive; //Store the interactive being looked at
