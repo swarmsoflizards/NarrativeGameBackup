@@ -38,6 +38,11 @@ public class DetectLookAtInteractive : MonoBehaviour
 
     private void FixedUpdate()
     {
+        GetLookedAtInteractive();
+    }
+
+    private IInteractive GetLookedAtInteractive()
+    {
         RaycastHit hitInfo; //Store info about object hit
         bool ObjectDetected = Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hitInfo, maxRange); //Cast ray
         Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray in scene
@@ -55,6 +60,7 @@ public class DetectLookAtInteractive : MonoBehaviour
         {
             lookedAtInteractive = interactive; //Set the interactive being looked at in interactive
         }
-    }
 
+        return interactive; //Return reference to interactive object
+    }
 }

@@ -19,12 +19,17 @@ public class InteractWithLookedAt : MonoBehaviour
             LookedAtInteractive.InteractWith();
         }
     }
+
+    /// <summary>
+    /// Event handler for DetectLookedAtInteractiveChanged
+    /// </summary>
+    /// <param name="newLookedAtInteractive"></param>
     private void OnLookedAtInteractiveChanged(IInteractive newLookedAtInteractive)
     {
         LookedAtInteractive = newLookedAtInteractive;
     }
 
-    #region
+    #region Event subscription / unsubscription
     private void OnEnable()
     {
         DetectLookAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
