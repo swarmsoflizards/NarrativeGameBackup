@@ -40,6 +40,7 @@ public class LookedAtInteractiveObjectDisplayText : MonoBehaviour
         UpdateDisplayText();
     }
 
+    #region Event subscription / unsubscription
     private void OnEnable()
     {
         DetectLookAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
@@ -49,5 +50,6 @@ public class LookedAtInteractiveObjectDisplayText : MonoBehaviour
     {
         DetectLookAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
     }
+    #endregion
 
 }

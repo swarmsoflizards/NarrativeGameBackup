@@ -9,14 +9,30 @@ using UnityEngine;
 
 public class InteractWithLookedAt : MonoBehaviour
 {
-    [SerializeField] private DetectLookAtInteractive detectLookedAtInteractive;
+    private IInteractive LookedAtInteractive;
 
     void Update()
     {
-        if (Input.GetButton("Interact") && detectLookedAtInteractive.LookedAtInteractive != null)
+        if (Input.GetButton("Interact") && LookedAtInteractive != null)
         {
             Debug.Log("Player pressed the Interact button.");
-            detectLookedAtInteractive.LookedAtInteractive.InteractWith();
+            LookedAtInteractive.InteractWith();
         }
     }
+    private void OnLookedAtInteractiveChanged(IInteractive newLookedAtInteractive)
+    {
+        LookedAtInteractive = newLookedAtInteractive;
+    }
+
+    #region
+    private void OnEnable()
+    {
+        DetectLookAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
+    }
+
+    private void OnDisable()
+    {
+        DetectLookAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
+    }
+    #endregion
 }
