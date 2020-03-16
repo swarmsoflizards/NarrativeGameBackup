@@ -38,9 +38,14 @@ public class DetectLookAtInteractive : MonoBehaviour
 
     private void FixedUpdate()
     {
-        GetLookedAtInteractive();
+        LookedAtInteractive = GetLookedAtInteractive(); //Store interactive or null in LookedAtInteractive
     }
 
+    #region GetLookedAtInteractive method
+    /// <summary>
+    /// Raycasts forward from the camera to look for IInteractives
+    /// </summary>
+    /// <returns>The first IInteractive detected, or null if there are none</returns>
     private IInteractive GetLookedAtInteractive()
     {
         RaycastHit hitInfo; //Store info about object hit
@@ -56,11 +61,7 @@ public class DetectLookAtInteractive : MonoBehaviour
             interactive = hitInfo.collider.gameObject.GetComponent<IInteractive>(); //Get the info of the object
         }
 
-        if (interactive != null) //If there is an interactive object
-        {
-            lookedAtInteractive = interactive; //Set the interactive being looked at in interactive
-        }
-
         return interactive; //Return reference to interactive object
     }
+    #endregion
 }
