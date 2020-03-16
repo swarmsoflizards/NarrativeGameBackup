@@ -18,7 +18,7 @@ public class DetectLookAtInteractive : MonoBehaviour
     /// Event raised whem the player looks at a different IInteractive
     /// </summary>
 
-    public static event Action LookedAtInteractiveChanged;
+    public static event Action<IInteractive> LookedAtInteractiveChanged;
 
     public IInteractive LookedAtInteractive //Property controls ability to access values
     {
@@ -28,9 +28,9 @@ public class DetectLookAtInteractive : MonoBehaviour
             bool isInteractiveChanged = value != lookedAtInteractive; //If LookedAtInteractive has changed, set bool to true
             if (isInteractiveChanged)
             {
-
+                lookedAtInteractive = value; //Update value; only allow value to be changed in this class
+                LookedAtInteractiveChanged?.Invoke(lookedAtInteractive); //If LookedAtInteractiveChanged is not null, raise event
             }
-            lookedAtInteractive = value; //Only allow value to be changed in this class
         } 
     }
 

@@ -29,4 +29,25 @@ public class LookedAtInteractiveObjectDisplayText : MonoBehaviour
             displayText.text = string.Empty;
         }
     }
+
+    /// <summary>
+    /// Event handler for DetectLookedAtInteractiveChanged
+    /// </summary>
+    /// <param name="newLookedAtInteractive">Reference to the new IInteractive that the player is lookning at</param>
+    private void OnLookedAtInteractiveChanged(IInteractive newLookedAtInteractive) //When looked at interactive changes, update display text
+    {
+        lookedAtInteractiveObject = newLookedAtInteractive; //Set new interactive to lookedAtInteractiveObject
+        UpdateDisplayText();
+    }
+
+    private void OnEnable()
+    {
+        DetectLookAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
+    }
+
+    private void OnDisable()
+    {
+        DetectLookAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
+    }
+
 }
