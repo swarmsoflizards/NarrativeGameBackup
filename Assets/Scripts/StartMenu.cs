@@ -10,10 +10,30 @@ public class StartMenu : MonoBehaviour
     /// </summary>
 
     [SerializeField] private string gameSceneName;
+    [SerializeField] private GameObject MenuPanel;
+    [SerializeField] private GameObject CreditsPanel;
+
+    private void Start()
+    {
+        MenuPanel.SetActive(true);
+        CreditsPanel.SetActive(false);
+    }
 
     public void LoadGameScene()
     {
         SceneManager.LoadScene(gameSceneName);
+    }
+
+    public void ShowMenuPanel()
+    {
+        MenuPanel.SetActive(true);
+        CreditsPanel.SetActive(false);
+    }
+
+    public void ShowCreditsPanel()
+    {
+        MenuPanel.SetActive(false);
+        CreditsPanel.SetActive(true);
     }
 
     public void ExitGame()
