@@ -31,7 +31,7 @@ public class StartMenu : MonoBehaviour
 
     public void ShowCreditsPanel() //Press credits button
     {
-        MenuPanel.SetActive(false);
+        //MenuPanel.SetActive(false);
         CreditsPanel.SetActive(true);
     }
 
