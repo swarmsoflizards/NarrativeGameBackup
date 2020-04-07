@@ -15,29 +15,28 @@ public class StartMenu : MonoBehaviour
 
     private void Start()
     {
+        ShowMenuPanel();
+    }
+
+    public void ShowMenuPanel() //On start and exit credits
+    {
         MenuPanel.SetActive(true);
         CreditsPanel.SetActive(false);
     }
 
-    public void LoadGameScene()
+    public void LoadGameScene() //Press start button
     {
         SceneManager.LoadScene(gameSceneName);
     }
 
-    public void ShowMenuPanel()
-    {
-        MenuPanel.SetActive(true);
-        CreditsPanel.SetActive(false);
-    }
-
-    public void ShowCreditsPanel()
+    public void ShowCreditsPanel() //Press credits button
     {
         MenuPanel.SetActive(false);
         CreditsPanel.SetActive(true);
     }
 
-    public void ExitGame()
-    {
+    public void ExitGame() //Press quit button
+    { 
         Debug.Log("Quit game");
         Application.Quit();
     }
