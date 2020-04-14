@@ -14296,7 +14296,7 @@ GameObject:
   - component: {fileID: 497591998}
   - component: {fileID: 497591997}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TMPDisplayText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14341,7 +14341,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 
+  m_text: dfghn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 287564335809ccc44a1550265cfbae87, type: 2}
   m_sharedMaterial: {fileID: -8861499966807817145, guid: 287564335809ccc44a1550265cfbae87,
@@ -14411,13 +14411,13 @@ MonoBehaviour:
   m_margin: {x: 2.3033304, y: -26.937653, z: 0, w: -14.693321}
   m_textInfo:
     textComponent: {fileID: 497591997}
-    characterCount: 0
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -16901,6 +16901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be8818ab5e651042939414c80bd6554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplayText: {fileID: 497591997}
+  InteractiveObjectText: Test Cube
 --- !u!65 &1031443632
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17970,7 +17972,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-37150
+  m_Name: pb_Mesh18956
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18381,6 +18383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be8818ab5e651042939414c80bd6554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplayText: {fileID: 0}
+  InteractiveObjectText: 
 --- !u!65 &2053003768
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18681,17 +18685,9 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_IsSelectable: 1
-  m_SelectedFaces: 04000000
-  m_SelectedEdges:
-  - a: 16
-    b: 17
-  - a: 17
-    b: 18
-  - a: 18
-    b: 19
-  - a: 19
-    b: 16
-  m_SelectedVertices: 10000000110000001200000013000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!43 &2081971722
 Mesh:
   m_ObjectHideFlags: 0
