@@ -5,6 +5,7 @@ using TMPro;
 
 public class InteractiveObject : MonoBehaviour, IInteractive
 {
+<<<<<<< HEAD
     [Tooltip("Where the interactive object text should display")]
     [SerializeField] private TextMeshProUGUI DisplayText;
 
@@ -15,5 +16,14 @@ public class InteractiveObject : MonoBehaviour, IInteractive
     {
         DisplayText.text = InteractiveObjectText;
         Debug.Log($"Player has interacted with (gameObject.name).");
+=======
+    [SerializeField] private string displayText = nameof(InteractiveObject);
+
+    public string DisplayText => displayText; 
+
+    public void InteractWith()
+    {
+        Debug.Log($"Player can interact with {gameObject.name}.");
+>>>>>>> 5cc6383c349ae86211871ff6f8cd0a315fae7e59
     }
 }
