@@ -11,6 +11,8 @@ public class InteractiveObject : MonoBehaviour, IInteractive
     [Tooltip("What the interactive object's text should display")]
     [SerializeField] private string InteractiveObjectText;
 
+
+
     public void InteractWith()
     {
         DisplayText.text = InteractiveObjectText;
