@@ -11,13 +11,21 @@ public class DetectLookAtInteractive : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray in scene
         RaycastHit hitInfo; //Store info about object hit
         bool ObjectDetected = Physics.Raycast(raycastOrigin.position, raycastOrigin.forward, out hitInfo, maxRange); //Cast ray
-        Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray in scene
+
+        IInteractive interactive = null; //Set base detected interactive to null
 
         if (ObjectDetected == true)
         {
             Debug.Log($"Looking at: { hitInfo.collider.gameObject.name}");
+            interactive = hitInfo.collider.gameObject.GetComponent<IInteractive>();
+        }
+
+        if (interactive != null)
+        {
+            interactive.InteractWith();
         }
     }
 
