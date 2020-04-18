@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+[RequireComponent (typeof(Animator))]
+
+public class Door : InteractiveObject
 {
     private Animator animator;
 
