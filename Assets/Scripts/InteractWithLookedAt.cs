@@ -8,8 +8,14 @@ using UnityEngine;
 /// </summary>
 public class InteractWithLookedAt : MonoBehaviour
 {
+    [SerializeField]
+    private DetectLookAtInteractive detectLookedAtInteractive;
+
     void Update()
     {
-        
+        if (Input.GetButtonDown("Interact"))
+        {
+            Debug.Log("Player pressed the interact button.");
+        }
     }
 }

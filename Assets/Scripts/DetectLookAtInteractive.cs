@@ -9,6 +9,8 @@ public class DetectLookAtInteractive : MonoBehaviour
     [Tooltip("How far from the raycastOrigin to search for interactive elements.")]
     [SerializeField]float maxRange = 5.0f;
 
+    private IInteractive lookedAtInteractive;
+
     private void FixedUpdate()
     {
         Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray in scene
@@ -20,12 +22,12 @@ public class DetectLookAtInteractive : MonoBehaviour
         if (ObjectDetected == true)
         {
             //Debug.Log($"Looking at: { hitInfo.collider.gameObject.name}");
-            interactive = hitInfo.collider.gameObject.GetComponent<IInteractive>();
+            interactive = hitInfo.collider.gameObject.GetComponent<IInteractive>(); //Store interactive being detected
         }
 
         if (interactive != null)
         {
-            interactive.InteractWith();
+            lookedAtInteractive = interactive; //Store detected interactive in field
         }
     }
 
