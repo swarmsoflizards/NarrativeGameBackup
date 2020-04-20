@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,11 +18,20 @@ public class DetectLookAtInteractive : MonoBehaviour
     /// <summary>
     /// Event raised when the player looks at a different IInteractive
     /// </summary>
+    public static event Action LookedAtInteractiveChanged;
     
     public IInteractive LookedAtInteractive
     {
         get { return lookedAtInteractive; }
-        private set { lookedAtInteractive = value; }
+        private set
+        {
+            bool isInteractiveChanged = value != lookedAtInteractive; //test if value being sent to lookedAtInteractive is already being stored there
+            if (isInteractiveChanged) //if value HAS changed
+            {
+                lookedAtInteractive = value; //replace with new value
+                LookedAtInteractiveChanged?.Invoke(); //invoke event if value isn't null
+            }
+        }
     }
 
     private IInteractive lookedAtInteractive;
