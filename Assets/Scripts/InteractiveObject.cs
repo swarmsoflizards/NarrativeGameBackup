@@ -17,7 +17,7 @@ public class InteractiveObject : MonoBehaviour, IInteractive
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void InteractWith()
+    public virtual void InteractWith()
     {
         audioSource.Play();
         Debug.Log($"Player has interacted with (gameObject.name).");

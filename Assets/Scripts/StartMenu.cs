@@ -61,7 +61,6 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene(gameSceneName);
     }
 
-
     public void ExitGame() //Press quit button
     { 
         Debug.Log("Quit game");
