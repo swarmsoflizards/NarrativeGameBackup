@@ -414,6 +414,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 1920
       objectReference: {fileID: 0}
+    - target: {fileID: 5006408900714984584, guid: 6c5ef56b89d0f764c99397a2d71b6b46,
+        type: 3}
+      propertyPath: m_Name
+      value: TMPLookedAtInteractiveDisplayText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c5ef56b89d0f764c99397a2d71b6b46, type: 3}
 --- !u!4 &124655910 stripped

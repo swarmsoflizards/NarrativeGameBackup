@@ -20,7 +20,7 @@ public class InteractiveObject : MonoBehaviour, IInteractive
 
     public void InteractWith()
     {
-        DisplayText.text = InteractiveObjectText;
+        //DisplayText.text = InteractiveObjectText;
         Debug.Log($"Player has interacted with (gameObject.name).");
     }
 }
