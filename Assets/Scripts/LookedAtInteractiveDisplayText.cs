@@ -12,4 +12,21 @@ public class LookedAtInteractiveDisplayText : MonoBehaviour
 {
     private IInteractive lookedAtInteractive;
     private TMP_Text displayText;
+
+    private void Awake()
+    {
+        displayText = GetComponent<TMP_Text>(); //Assign displayText to attached TMP_Text
+    }
+
+    private void UpdateDisplayText()
+    {
+        if (lookedAtInteractive != null) //if looking at interactive
+        {
+            displayText.text = lookedAtInteractive.DisplayText; //Get and display text from InteractiveObject.cs
+        }
+        else
+        {
+            displayText.text = string.Empty;
+        }
+    }
 }

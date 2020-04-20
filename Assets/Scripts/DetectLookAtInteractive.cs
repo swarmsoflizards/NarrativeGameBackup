@@ -13,6 +13,11 @@ public class DetectLookAtInteractive : MonoBehaviour
     [Tooltip("How far from the raycastOrigin to search for interactive elements.")]
     [SerializeField] float maxRange = 5.0f;
 
+
+    /// <summary>
+    /// Event raised when the player looks at a different IInteractive
+    /// </summary>
+    
     public IInteractive LookedAtInteractive
     {
         get { return lookedAtInteractive; }
