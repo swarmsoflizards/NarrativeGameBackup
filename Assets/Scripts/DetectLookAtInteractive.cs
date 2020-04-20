@@ -18,7 +18,7 @@ public class DetectLookAtInteractive : MonoBehaviour
     /// <summary>
     /// Event raised when the player looks at a different IInteractive
     /// </summary>
-    public static event Action LookedAtInteractiveChanged;
+    public static event Action<IInteractive> LookedAtInteractiveChanged;
     
     public IInteractive LookedAtInteractive
     {
@@ -29,7 +29,7 @@ public class DetectLookAtInteractive : MonoBehaviour
             if (isInteractiveChanged) //if value HAS changed
             {
                 lookedAtInteractive = value; //replace with new value
-                LookedAtInteractiveChanged?.Invoke(); //invoke event if value isn't null
+                LookedAtInteractiveChanged?.Invoke(lookedAtInteractive); //invoke event if value isn't null with NEW value
             }
         }
     }
@@ -37,6 +37,15 @@ public class DetectLookAtInteractive : MonoBehaviour
     private IInteractive lookedAtInteractive;
 
     private void FixedUpdate()
+    {
+        LookedAtInteractive = GetLookedAtInteractive();
+    }
+
+    /// <summary>
+    /// Raycasts forward from the camera to look for IInteractives
+    /// </summary>
+    /// <returns>The first IInteractive detected, or null if none are found</returns>
+    private IInteractive GetLookedAtInteractive()
     {
         Debug.DrawRay(raycastOrigin.position, raycastOrigin.forward * maxRange, Color.red); //Draw ray in scene
         RaycastHit hitInfo; //Store info about object hit
@@ -48,14 +57,10 @@ public class DetectLookAtInteractive : MonoBehaviour
 
         if (ObjectWasDetected == true)
         {
-            //Debug.Log($"Looking at: { hitInfo.collider.gameObject.name}");
+            Debug.Log($"Looking at: { hitInfo.collider.gameObject.name}");
             interactive = hitInfo.collider.gameObject.GetComponent<IInteractive>(); //Store interactive being detected
         }
 
-        if (interactive != null)
-        {
-            lookedAtInteractive = interactive; //Store detected interactive in field
-        }
+        return interactive;
     }
-
 }

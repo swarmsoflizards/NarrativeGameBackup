@@ -11,11 +11,14 @@ using TMPro;
 public class LookedAtInteractiveDisplayText : MonoBehaviour
 {
     private IInteractive lookedAtInteractive;
-    private TMP_Text displayText;
+    //private TMP_Text displayText;
+    [SerializeField] private TMP_Text displayText;
 
     private void Awake()
     {
-        displayText = GetComponent<TMP_Text>(); //Assign displayText to attached TMP_Text
+
+        //displayText = GetComponent<TMP_Text>(); //Assign displayText to attached TMP_Text
+        UpdateDisplayText();
     }
 
     private void UpdateDisplayText()
@@ -29,4 +32,28 @@ public class LookedAtInteractiveDisplayText : MonoBehaviour
             displayText.text = string.Empty;
         }
     }
+
+    /// <summary>
+    /// Event handler for DetectLookedAtInteractiveChanged
+    /// </summary>
+    /// <param name="newLookedAtInteractive">Reference to the new IInteractive the player is looking at</param>
+
+    private void OnLookedAtInteractiveChanged(IInteractive newLookedAtInteractive)
+    {
+        lookedAtInteractive = newLookedAtInteractive;
+        UpdateDisplayText();
+    }
+
+    #region Event subsccription / unsubscription
+    private void OnEnable()
+    {
+        DetectLookAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
+    }
+
+    private void OnDisable()
+    {
+        DetectLookAtInteractive.LookedAtInteractiveChanged -= OnLookedAtInteractiveChanged;
+
+    }
+    #endregion
 }
