@@ -9,28 +9,31 @@ public class StartMenu : MonoBehaviour
     /// This script contains the methods used by the buttons in the start menu
     /// </summary>
 
+    #region Assign scenes and panels
+    [Tooltip("Game scene")]
     [SerializeField] private string gameSceneName;
+    [Tooltip("Start menu panel")]
     [SerializeField] private GameObject MenuPanel;
+    [Tooltip("Start credits panel")]
     [SerializeField] private GameObject CreditsPanel;
+    [Tooltip("Start attribution panel 1")]
     [SerializeField] private GameObject Attribution1Panel;
+    [Tooltip("Start attribution panel 2")]
     [SerializeField] private GameObject Attribution2Panel;
+    #endregion
 
     private void Start()
     {
         ShowMenuPanel();
     }
 
+    #region Inter-menu navigation
     public void ShowMenuPanel() //On start and exit credits
     {
         MenuPanel.SetActive(true);
         CreditsPanel.SetActive(false);
         Attribution1Panel.SetActive(false);
         Attribution2Panel.SetActive(false);
-    }
-
-    public void LoadGameScene() //Press start button
-    {
-        SceneManager.LoadScene(gameSceneName);
     }
 
     public void ShowCreditsPanel() //Press credits button
@@ -51,6 +54,13 @@ public class StartMenu : MonoBehaviour
         Attribution1Panel.SetActive(false);
         Attribution2Panel.SetActive(true);
     }
+    #endregion
+
+    public void LoadGameScene() //Press start button
+    {
+        SceneManager.LoadScene(gameSceneName);
+    }
+
 
     public void ExitGame() //Press quit button
     { 
