@@ -60,7 +60,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ShouldOpen
+    m_ConditionEvent: shouldOpen
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8235247228687396933}
@@ -85,7 +85,7 @@ AnimatorController:
   m_Name: Door
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: ShouldOpen
+  - m_Name: shouldOpen
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
