@@ -6,9 +6,11 @@ public class InventoryObject : InteractiveObject
 {
     [Tooltip("Name of the object as it will appear in the inventory menu UI")]
     [SerializeField] private string objectName = nameof(InventoryObject);
-    
+
     //TODO: Add long description field
     //TODO: Add icon field
+
+    public string ObjectName => objectName;
 
     private new Renderer renderer;
     private new Collider collider;
