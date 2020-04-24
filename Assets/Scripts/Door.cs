@@ -7,6 +7,9 @@ using TMPro;
 
 public class Door : InteractiveObject
 {
+    [Tooltip("Check this box to lock the door.")]
+    [SerializeField] private bool isLocked = false;
+
     private Animator animator;
 
     /// <summary>
@@ -28,6 +31,6 @@ public class Door : InteractiveObject
         base.InteractWith(); //Call all functionality in parent method
         animator.SetBool("shouldOpen", true);
         audioSource.Play();
-        Debug.Log($"Player has opened door.");
+        displayText = string.Empty;
     }
 }
