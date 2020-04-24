@@ -13,6 +13,11 @@ public class Door : InteractiveObject
     [Tooltip("Text that displays when the door is locked")]
     [SerializeField] private string lockedDisplayText = "Locked";
 
+    [Tooltip("AudioClip that plays when the player interacts with a locked door")]
+    [SerializeField] private AudioClip lockedAudioClip;
+    [Tooltip("AudioClip that plays when the player opens a door")]
+    [SerializeField] private AudioClip OpenAudioClip;
+
     public override string DisplayText => isLocked ? lockedDisplayText : base.DisplayText;
 
     private Animator animator;
@@ -34,13 +39,21 @@ public class Door : InteractiveObject
 
     public override void InteractWith()
     {
-        if (!isOpen && !isLocked)
+        if (!isOpen)
         {
+            if (!isLocked)
+            {
+                audioSource.clip = OpenAudioClip;
+                //audioSource.Play();
+                animator.SetBool("shouldOpen", true);
+                displayText = string.Empty;
+                isOpen = true;
+            }
+            else //if door IS locked
+            {
+                audioSource.clip = lockedAudioClip;
+            }
             base.InteractWith(); //Call all functionality in parent method
-            animator.SetBool("shouldOpen", true);
-            audioSource.Play();
-            displayText = string.Empty;
-            isOpen = true;
         }
     }
 }

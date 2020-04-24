@@ -12,14 +12,21 @@ public class InteractiveObject : MonoBehaviour, IInteractive
     public virtual string DisplayText => displayText; //Take DisplayText from IInteractive and set it to displayText 
     protected AudioSource audioSource;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
     public virtual void InteractWith()
     {
-        audioSource.Play();
-        Debug.Log($"Player has interacted with (gameObject.name).");
+        try
+        {
+            audioSource.Play();
+        }
+        catch (System.Exception e)
+        {
+            throw e;
+        }
+        Debug.Log($"Player has interacted with {gameObject.name}.");
     }
 }
