@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class InteractiveObject : MonoBehaviour, IInteractive
 {
-    [Tooltip("Where the interactive object text should display")]
-    [SerializeField] private TextMeshProUGUI DisplayText;
+    [SerializeField] protected string displayText = nameof(InteractiveObject); //Set display text in editor
 
-    [Tooltip("What the interactive object's text should display")]
-    [SerializeField] private string InteractiveObjectText;
+    public string DisplayText => displayText; //Take DisplayText from IInteractive and set it to displayText 
+    protected AudioSource audioSource;
 
-
-
-    public void InteractWith()
+    private void Awake()
     {
-        DisplayText.text = InteractiveObjectText;
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public virtual void InteractWith()
+    {
+        audioSource.Play();
         Debug.Log($"Player has interacted with (gameObject.name).");
     }
 }
