@@ -758,7 +758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -242.23816}
+  m_AnchoredPosition: {x: 0, y: -224.989}
   m_SizeDelta: {x: 210, y: 228}
   m_Pivot: {x: 0.5, y: 0.49999985}
 --- !u!114 &337245634
@@ -1445,7 +1445,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 2.33
   m_canvasRenderer: {fileID: 754689989}
   m_TextComponent: {fileID: 1783166576}
   m_materialReferenceIndex: 1
@@ -3683,7 +3683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -189.74072}
+  m_AnchoredPosition: {x: 0, y: -224.989}
   m_SizeDelta: {x: 210, y: 228}
   m_Pivot: {x: 0.5, y: 0.49999985}
 --- !u!114 &1910280665
