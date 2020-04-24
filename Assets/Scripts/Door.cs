@@ -26,8 +26,8 @@ public class Door : InteractiveObject
     public override void InteractWith()
     {
         base.InteractWith(); //Call all functionality in parent method
-        audioSource.Play();
         animator.SetBool("shouldOpen", true);
+        audioSource.Play();
         Debug.Log($"Player has opened door.");
     }
 }
