@@ -17,7 +17,9 @@ public class InventoryObject : InteractiveObject
     //TODO: Add long description field
     //TODO: Add icon field
 
+    public Sprite Icon => icon;
     public string ObjectName => objectName;
+    public string Description => description;
 
     private new Renderer renderer;
     private new Collider collider;
@@ -43,6 +45,7 @@ public class InventoryObject : InteractiveObject
     {
         base.InteractWith();
         PlayerInventory.InventoryObjects.Add(this);
+        InventoryMenu.Instance.AddItemToMenu(this);
         renderer.enabled = false;
         collider.enabled = false;
         Debug.Log($"Inventory menu game object name {InventoryMenu.Instance.name}");

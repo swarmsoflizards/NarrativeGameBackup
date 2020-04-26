@@ -5,6 +5,11 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class InventoryMenu : MonoBehaviour
 {
+    [Tooltip("The prefab to go in the list of inventory items")]
+    [SerializeField] private GameObject inventoryMenuItemTogglePrefab;
+    [Tooltip("Content of the scrollview for the list of inventory items")]
+    [SerializeField] private Transform inventoryListContentArea;
+
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
     private RigidbodyFirstPersonController rigidbodyFirstPersonController;
@@ -25,6 +30,17 @@ public class InventoryMenu : MonoBehaviour
     private bool IsVisible => canvasGroup.alpha > 0; //Allows editing of canvas group visibility
 
     #region Show/Hide Menu
+    /// <summary>
+    /// Instantiates a new InventoryMenuItemToggle prefab and adds it to the menu
+    /// </summary>
+    /// <param name="inventoryObjectToAdd"></param>
+    public void AddItemToMenu(InventoryObject inventoryObjectToAdd)
+    {
+        GameObject clone = Instantiate(inventoryMenuItemTogglePrefab, inventoryListContentArea);
+        InventoryMenuItemToggle toggle = clone.GetComponent<InventoryMenuItemToggle>();
+        toggle.AssociatedInventoryObject = inventoryObjectToAdd;
+    }
+
     public void ExitMenuButtonClicked()
     {
         HideMenu();
