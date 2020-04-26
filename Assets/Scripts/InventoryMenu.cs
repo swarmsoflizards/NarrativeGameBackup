@@ -19,6 +19,8 @@ public class InventoryMenu : MonoBehaviour
         private set { instance = value; }
     }
 
+    private bool IsVisible => canvasGroup.alpha > 0;
+    
     private void ShowMenu()
     {
         canvasGroup.alpha = 1; //Show canvas group
@@ -29,6 +31,20 @@ public class InventoryMenu : MonoBehaviour
     {
         canvasGroup.alpha = 0; //Hide canvas group
         canvasGroup.interactable = false;
+    }
+
+    private void Update()
+    {
+        HandleInput();
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetButtonDown("InventoryToggle"))
+            if (IsVisible)
+                HideMenu();
+            else
+                ShowMenu();
     }
 
     private void Awake()
