@@ -8,6 +8,7 @@ public class InventoryMenu : MonoBehaviour
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
     private RigidbodyFirstPersonController rigidbodyFirstPersonController;
+    private AudioSource audioSource;
 
     public static InventoryMenu Instance
     {
@@ -22,6 +23,11 @@ public class InventoryMenu : MonoBehaviour
     }
 
     private bool IsVisible => canvasGroup.alpha > 0; //Allows editing of canvas group visibility
+
+    public void ExitMenuButtonClicked()
+    {
+        HideMenu();
+    }
     
     private void ShowMenu()
     {
@@ -30,7 +36,7 @@ public class InventoryMenu : MonoBehaviour
         rigidbodyFirstPersonController.enabled = false; //Must be disabled before cursor unlock
         Cursor.visible = true; //Shows cursor
         Cursor.lockState = CursorLockMode.None; //Unlocks cursor
-
+        audioSource.Play();
     }
 
     private void HideMenu()
@@ -40,7 +46,7 @@ public class InventoryMenu : MonoBehaviour
         Cursor.visible = false; //Hides cursor
         Cursor.lockState = CursorLockMode.Locked; //Locks cursor
         rigidbodyFirstPersonController.enabled = true; //Must be enabled after cursor lock
-
+        audioSource.Play();
     }
 
     private void Update()
@@ -66,6 +72,7 @@ public class InventoryMenu : MonoBehaviour
 
         canvasGroup = GetComponent<CanvasGroup>(); //Initialize canvas group
         rigidbodyFirstPersonController = FindObjectOfType<RigidbodyFirstPersonController>(); //Search whole scene for controller and assign to instance
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
