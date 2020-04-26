@@ -15,19 +15,21 @@ public class InventoryMenu : MonoBehaviour
         {
             if (instance == null)
                 throw new System.Exception("There is no InventoryMenu instance in the scene." +
-                     "Make sure the InventoryMenu script is applied to a GameObjecyt in your scene.");
+                     "Make sure the InventoryMenu script is applied to a GameObject in your scene.");
             return instance;
         }
         private set { instance = value; }
     }
 
-    private bool IsVisible => canvasGroup.alpha > 0;
+    private bool IsVisible => canvasGroup.alpha > 0; //Allows editing of canvas group visibility
     
     private void ShowMenu()
     {
         canvasGroup.alpha = 1; //Show canvas group
         canvasGroup.interactable = true;
-        rigidbodyFirstPersonController.enabled = false;
+        rigidbodyFirstPersonController.enabled = false; //Must be disabled before cursor unlock
+        Cursor.visible = true; //Shows cursor
+        Cursor.lockState = CursorLockMode.None; //Unlocks cursor
 
     }
 
@@ -35,7 +37,10 @@ public class InventoryMenu : MonoBehaviour
     {
         canvasGroup.alpha = 0; //Hide canvas group
         canvasGroup.interactable = false;
-        rigidbodyFirstPersonController.enabled = true;
+        Cursor.visible = false; //Hides cursor
+        Cursor.lockState = CursorLockMode.Locked; //Locks cursor
+        rigidbodyFirstPersonController.enabled = true; //Must be enabled after cursor lock
+
     }
 
     private void Update()
