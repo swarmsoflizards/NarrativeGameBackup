@@ -19,4 +19,11 @@ public class InventoryMenuItemToggle : MonoBehaviour
             iconImage.sprite = associatedInventoryObject.Icon;
         }
     }
+
+    private void Awake()
+    {
+        Toggle toggle = GetComponent<Toggle>();
+        ToggleGroup toggleGroup = GetComponentInParent<ToggleGroup>();
+        toggle.group = toggleGroup;
+    }
 }
