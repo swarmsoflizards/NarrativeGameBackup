@@ -24,6 +24,7 @@ public class InventoryMenu : MonoBehaviour
 
     private bool IsVisible => canvasGroup.alpha > 0; //Allows editing of canvas group visibility
 
+    #region Show/Hide Menu
     public void ExitMenuButtonClicked()
     {
         HideMenu();
@@ -62,7 +63,9 @@ public class InventoryMenu : MonoBehaviour
             else
                 ShowMenu();
     }
+    #endregion
 
+    #region Initialize + Start
     private void Awake()
     {
         if (instance == null)
@@ -88,4 +91,5 @@ public class InventoryMenu : MonoBehaviour
         yield return new WaitForSeconds(audioSource.clip.length); //Wait for sound effect to play at 0
         audioSource.volume = originalVolume; //Return volume to normal
     }
+    #endregion
 }
