@@ -77,5 +77,15 @@ public class InventoryMenu : MonoBehaviour
     private void Start()
     {
         HideMenu(); //Avoid hiding menu before finding character controller
+        StartCoroutine(WaitForAudioClip()); //Keep sound effect from playing on Start
+    }
+
+    private IEnumerator WaitForAudioClip()
+    {
+        float originalVolume = audioSource.volume; //Save volume defined in editor
+
+        audioSource.volume = 0; //Set sound effect volume to 0
+        yield return new WaitForSeconds(audioSource.clip.length); //Wait for sound effect to play at 0
+        audioSource.volume = originalVolume; //Return volume to normal
     }
 }
