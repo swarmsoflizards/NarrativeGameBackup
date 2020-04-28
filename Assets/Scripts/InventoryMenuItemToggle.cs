@@ -24,14 +24,14 @@ public class InventoryMenuItemToggle : MonoBehaviour
 
     /// <summary>
     /// This will be plugged into the toggle's "OnValueChanged" property in the editor
-    /// and called whenevert the toggle is clicked
+    /// and called whenever the toggle is clicked
     /// </summary>
     public void InventoryMenuItemWasToggled(bool isOn)
     {
         //We only want to do anything when the toggle is selected
         if (isOn)
             InventoryMenuItemSelected?.Invoke(AssociatedInventoryObject);
-        Debug.Log($"Toggled {isOn}");
+        //Debug.Log($"Toggled {isOn}");
     }
 
     private void Awake()
