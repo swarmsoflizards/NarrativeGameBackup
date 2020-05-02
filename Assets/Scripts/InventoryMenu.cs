@@ -81,23 +81,9 @@ public class InventoryMenu : MonoBehaviour
         descriptionAreaText.text = inventoryObjectThatWasSelected.Description;
     }
 
-    //private void OnInventoryMenuItemDeselected(InventoryObject inventortObjectThatWasSelected)
-    //{
-    //    itemLabelText.text = null;
-    //    descriptionAreaText.text = null;
-    //    Debug.Log("An inventory menu item has been deselected");
-    //}
-
     private void OnEnable()
     {
         InventoryMenuItemToggle.InventoryMenuItemSelected += OnInventoryMenuItemSelected;
-    }
-
-    private void OnDisable()
-    {
-        //InventoryMenuItemToggle.InventoryMenuItemSelected -= OnInventoryMenuItemSelected;
-        //InventoryMenuItemToggle.InventoryMenuItemSelected += OnInventoryMenuItemDeselected;
-        //Debug.Log("An inventory menu item has been deselected");
     }
 
     private void Update()
