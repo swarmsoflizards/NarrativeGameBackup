@@ -14,9 +14,6 @@ public class InventoryObject : InteractiveObject
     [Tooltip("Icon to display for this item in the inventory menu")]
     [SerializeField] private Sprite icon;
 
-    //TODO: Add long description field
-    //TODO: Add icon field
-
     public Sprite Icon => icon;
     public string ObjectName => objectName;
     public string Description => description;

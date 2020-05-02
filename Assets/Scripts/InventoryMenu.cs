@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventoryMenu : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class InventoryMenu : MonoBehaviour
     [SerializeField] private GameObject inventoryMenuItemTogglePrefab;
     [Tooltip("Content of the scrollview for the list of inventory items")]
     [SerializeField] private Transform inventoryListContentArea;
+    [Tooltip("Place in the UI for displaying the name of the selected inventory item")]
+    [SerializeField] private TMP_Text itemLabelText;
+    [Tooltip("Place in the UI for displaying info about the selected inventory item")]
+    [SerializeField] private TMP_Text descriptionAreaText;
 
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
@@ -30,7 +35,7 @@ public class InventoryMenu : MonoBehaviour
 
     private bool IsVisible => canvasGroup.alpha > 0; //Allows editing of canvas group visibility
 
-    #region Show/Hide Menu
+    #region Inventory Menu Functionality
     /// <summary>
     /// Instantiates a new InventoryMenuItemToggle prefab and adds it to the menu
     /// </summary>
@@ -65,6 +70,34 @@ public class InventoryMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked; //Locks cursor
         rigidbodyFirstPersonController.enabled = true; //Must be enabled after cursor lock
         audioSource.Play();
+    }
+
+    /// <summary>
+    /// This is the event handler for the InventoryMenuItemSelected
+    /// </summary>
+    private void OnInventoryMenuItemSelected(InventoryObject inventoryObjectThatWasSelected)
+    {
+        itemLabelText.text = inventoryObjectThatWasSelected.ObjectName;
+        descriptionAreaText.text = inventoryObjectThatWasSelected.Description;
+    }
+
+    //private void OnInventoryMenuItemDeselected(InventoryObject inventortObjectThatWasSelected)
+    //{
+    //    itemLabelText.text = null;
+    //    descriptionAreaText.text = null;
+    //    Debug.Log("An inventory menu item has been deselected");
+    //}
+
+    private void OnEnable()
+    {
+        InventoryMenuItemToggle.InventoryMenuItemSelected += OnInventoryMenuItemSelected;
+    }
+
+    private void OnDisable()
+    {
+        //InventoryMenuItemToggle.InventoryMenuItemSelected -= OnInventoryMenuItemSelected;
+        //InventoryMenuItemToggle.InventoryMenuItemSelected += OnInventoryMenuItemDeselected;
+        //Debug.Log("An inventory menu item has been deselected");
     }
 
     private void Update()
