@@ -18,12 +18,13 @@ public class InventoryMenu : MonoBehaviour
     [Tooltip("Place in the UI for displaying info about the selected inventory item")]
     [SerializeField] private TMP_Text descriptionAreaText;
 
-    [Tooltip("The AudioSource to play when the player opens and closes the inventory menu")]
-    [SerializeField] private AudioSource audioSource;
+    [Tooltip("The AudioSource to play when the player interacts with the inventory buttons")]
+    [SerializeField] private AudioSource audioSourceButton; //ONLY FOR EXIT BUTTON
 
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
     private RigidbodyFirstPersonController rigidbodyFirstPersonController;
+    private AudioSource audioSource;
 
 
     public static InventoryMenu Instance
@@ -54,6 +55,7 @@ public class InventoryMenu : MonoBehaviour
 
     public void ExitMenuButtonClicked()
     {
+        audioSourceButton.Play();
         HideMenu();
     }
     
@@ -100,9 +102,14 @@ public class InventoryMenu : MonoBehaviour
     {
         if (Input.GetButtonDown("InventoryToggle"))
             if (IsVisible)
+            {
                 HideMenu();
+            }
             else
+            {
                 ShowMenu();
+            }
+                
     }
     #endregion
 
@@ -130,7 +137,7 @@ public class InventoryMenu : MonoBehaviour
 
         audioSource.volume = 0; //Set sound effect volume to 0
         yield return new WaitForSeconds(audioSource.clip.length); //Wait for sound effect to play at 0
-        audioSource.volume = originalVolume; //Return volume to normal
+        audioSource.volume = 2; //Return volume to normal
     }
     #endregion
 }
