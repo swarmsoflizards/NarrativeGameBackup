@@ -7,6 +7,8 @@ using TMPro;
 
 public class InventoryMenu : MonoBehaviour
 {
+
+
     [Tooltip("The prefab to go in the list of inventory items")]
     [SerializeField] private GameObject inventoryMenuItemTogglePrefab;
     [Tooltip("Content of the scrollview for the list of inventory items")]
@@ -16,10 +18,13 @@ public class InventoryMenu : MonoBehaviour
     [Tooltip("Place in the UI for displaying info about the selected inventory item")]
     [SerializeField] private TMP_Text descriptionAreaText;
 
+    [Tooltip("The AudioSource to play when the player opens and closes the inventory menu")]
+    [SerializeField] private AudioSource audioSource;
+
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
     private RigidbodyFirstPersonController rigidbodyFirstPersonController;
-    private AudioSource audioSource;
+
 
     public static InventoryMenu Instance
     {
