@@ -20,14 +20,28 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private GameObject Attribution1Panel;
     [Tooltip("Start attribution panel 2")]
     [SerializeField] private GameObject Attribution2Panel;
+
+    private AudioSource audioSource;
     #endregion
 
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     private void Start()
     {
         ShowMenuPanel();
     }
 
+
+
     #region Inter-menu navigation
+
+    public void PlaySoundEffect()
+    {
+        audioSource.Play();
+    }
+
     public void ShowMenuPanel() //On start and exit credits
     {
         MenuPanel.SetActive(true);
