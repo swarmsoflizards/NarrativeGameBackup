@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// This script controls the generator game object in the garage. It requires the gas can to be activated,
+/// and then allows the player to use power in the garage.
+/// </summary>
+
 [RequireComponent(typeof(Animator))]
 
 public class Generator : InteractiveObject
 {
     [Tooltip("Assign gasoline GameObject here")]
     [SerializeField] private InventoryObject gasoline;
+
+    [Tooltip("Assign lightswitch to allow interaction with")]
+    [SerializeField] private InteractiveObject lightSwitchToToggle;
 
     [Tooltip("Text that displays when the generator is inactive")]
     [SerializeField] private string inactiveDisplayText;
@@ -22,7 +30,6 @@ public class Generator : InteractiveObject
 
     private bool HasGasoline => PlayerInventory.InventoryObjects.Contains(gasoline);
     private Animator animator;
-    //private AudioSource engineAudioSource;
     private bool isActive = false;
 
     public override string DisplayText
@@ -43,10 +50,7 @@ public class Generator : InteractiveObject
     {
         base.Awake();
         animator = GetComponent<Animator>();
-        //engineAudioSource = GetComponent<AudioSource>();
         isActive = false;
-        //audioSource.clip = switchAudioClip;
-        //engineAudioSource.clip = engineAudioClip;
     }
         
     public override void InteractWith()
@@ -60,8 +64,6 @@ public class Generator : InteractiveObject
             else //DOES have gas
             {
                 audioSource.clip = engineAudioClip;
-                //StartCoroutine(WaitForAudioClip());
-                //engineAudioSource.Play();
                 animator.SetBool("shouldRun", true);
                 displayText = activeDisplayText;
                 Activate();
@@ -87,13 +89,5 @@ public class Generator : InteractiveObject
     {
         isActive = false;
     }
-
-    //private IEnumerator WaitForAudioClip()
-    //{
-    //    //audioSource.clip = switchAudioClip;
-    //    yield return new WaitForSeconds(switchAudioClip.length);
-    //    //audioSource.clip = engineAudioClip;
-    //}
-
 }
 
