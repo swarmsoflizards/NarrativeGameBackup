@@ -15,10 +15,12 @@ public class Generator : InteractiveObject
     [Tooltip("Text that displays when the generator is active")]
     [SerializeField] private string activeDisplayText;
 
-    [Tooltip("AudioClip that plays when the player interacts with the inactive generator")]
-    [SerializeField] private AudioClip inactiveAudioClip;
+    //[Tooltip("AudioClip that plays when the player interacts with the inactive generator")]
+    //[SerializeField] private AudioClip inactiveAudioClip;
     [Tooltip("AudioClip that plays when the player activates the generator")]
-    [SerializeField] private AudioClip activeAudioClip;
+    [SerializeField] private AudioClip switchAudioClip;
+    [Tooltip("AudioClip that plays when when the generator is turned on")]
+    [SerializeField] private AudioClip engineAudioClip;
 
     private bool HasGasoline => PlayerInventory.InventoryObjects.Contains(gasoline);
     private Animator animator;
@@ -52,15 +54,22 @@ public class Generator : InteractiveObject
             Debug.Log("Interacted with generator!!!!");
             if (!HasGasoline) //does NOT have gas
             {
-                audioSource.clip = inactiveAudioClip;
+                audioSource.clip = switchAudioClip;
             }
             else //DOES have gas
             {
-                audioSource.clip = activeAudioClip;
+                audioSource.clip = switchAudioClip;
                 animator.SetBool("shouldRun", true);
                 displayText = activeDisplayText;
                 Activate();
             }
+        }
+        else //if already active
+        {
+            audioSource.clip = switchAudioClip;
+            animator.SetBool("shouldRun", false);
+            displayText = inactiveDisplayText;
+            Deactivate();
         }
         base.InteractWith(); //Call all functionality in parent method
     }
@@ -69,6 +78,12 @@ public class Generator : InteractiveObject
     {
         isActive = true;
         PlayerInventory.InventoryObjects.Remove(gasoline);
+        //audioSource.clip = engineAudioClip;
+    }
+
+    private void Deactivate()
+    {
+        isActive = false;
     }
 
 }
