@@ -15,8 +15,6 @@ public class Generator : InteractiveObject
     [Tooltip("Text that displays when the generator is active")]
     [SerializeField] private string activeDisplayText;
 
-    //[Tooltip("AudioClip that plays when the player interacts with the inactive generator")]
-    //[SerializeField] private AudioClip inactiveAudioClip;
     [Tooltip("AudioClip that plays when the player activates the generator")]
     [SerializeField] private AudioClip switchAudioClip;
     [Tooltip("AudioClip that plays when when the generator is turned on")]
@@ -24,6 +22,7 @@ public class Generator : InteractiveObject
 
     private bool HasGasoline => PlayerInventory.InventoryObjects.Contains(gasoline);
     private Animator animator;
+    //private AudioSource engineAudioSource;
     private bool isActive = false;
 
     public override string DisplayText
@@ -44,21 +43,25 @@ public class Generator : InteractiveObject
     {
         base.Awake();
         animator = GetComponent<Animator>();
+        //engineAudioSource = GetComponent<AudioSource>();
         isActive = false;
+        //audioSource.clip = switchAudioClip;
+        //engineAudioSource.clip = engineAudioClip;
     }
         
     public override void InteractWith()
     {
         if (!isActive) //if inactive
         {
-            Debug.Log("Interacted with generator!!!!");
             if (!HasGasoline) //does NOT have gas
             {
                 audioSource.clip = switchAudioClip;
             }
             else //DOES have gas
             {
-                audioSource.clip = switchAudioClip;
+                audioSource.clip = engineAudioClip;
+                //StartCoroutine(WaitForAudioClip());
+                //engineAudioSource.Play();
                 animator.SetBool("shouldRun", true);
                 displayText = activeDisplayText;
                 Activate();
@@ -78,13 +81,19 @@ public class Generator : InteractiveObject
     {
         isActive = true;
         PlayerInventory.InventoryObjects.Remove(gasoline);
-        //audioSource.clip = engineAudioClip;
     }
 
     private void Deactivate()
     {
         isActive = false;
     }
+
+    //private IEnumerator WaitForAudioClip()
+    //{
+    //    //audioSource.clip = switchAudioClip;
+    //    yield return new WaitForSeconds(switchAudioClip.length);
+    //    //audioSource.clip = engineAudioClip;
+    //}
 
 }
 

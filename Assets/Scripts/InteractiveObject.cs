@@ -30,4 +30,5 @@ public class InteractiveObject : MonoBehaviour, IInteractive
         }
         Debug.Log($"Player has interacted with {gameObject.name}.");
     }
+
 }
