@@ -15,8 +15,8 @@ public class Generator : InteractiveObject
     [Tooltip("Assign gasoline GameObject here")]
     [SerializeField] private InventoryObject gasoline;
 
-    [Tooltip("Assign lightswitch to allow interaction with")]
-    [SerializeField] private InteractiveObject lightSwitchToToggle;
+    [Tooltip("Assign lightswitch controller to allow interaction with")]
+    [SerializeField] private GameObject lightSwitchToToggle;
 
     [Tooltip("Text that displays when the generator is inactive")]
     [SerializeField] private string inactiveDisplayText;
@@ -82,6 +82,7 @@ public class Generator : InteractiveObject
     private void Activate()
     {
         isActive = true;
+        lightSwitchToToggle.SetActive(!lightSwitchToToggle.activeSelf); //Activate light switch controller
         PlayerInventory.InventoryObjects.Remove(gasoline);
     }
 
