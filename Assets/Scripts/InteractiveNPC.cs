@@ -22,7 +22,6 @@ public class InteractiveNPC : InteractiveObject
     [SerializeField] private string dialogue2;
 
     private int numberOfInteractions = 0;
-    //private string dialogueHolder;
 
     public InteractiveNPC()
     {
