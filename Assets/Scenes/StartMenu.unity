@@ -3032,7 +3032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457ca4eb3cb669742952c8bfbde33467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: GameScene
+  gameSceneName: InventoryMenu
   MenuPanel: {fileID: 1630672492}
   CreditsPanel: {fileID: 1394086434}
   Attribution1Panel: {fileID: 1463880019}
