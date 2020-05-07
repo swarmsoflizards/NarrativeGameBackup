@@ -10,13 +10,23 @@ using UnityEngine;
 public class PowerSocket : InteractiveObject
 {
     [Tooltip("Assign GameObject to power here")]
-    [SerializeField] private InventoryObject objectToBePluggedIn;
+    [SerializeField] private InventoryObject objectToBePowered;
+    [Tooltip("Assign GameObject to power here")]
+    [SerializeField] private InventoryObject objectCord;
 
-    private bool HasObjectToBePluggedIn => PlayerInventory.InventoryObjects.Contains(objectToBePluggedIn);
+    private bool HasObjectToBePowered => PlayerInventory.InventoryObjects.Contains(objectToBePowered);
+    private bool HasObjectCord => PlayerInventory.InventoryObjects.Contains(objectCord);
 
     public override void InteractWith()
     {
-        Debug.Log("Player has plugged in and powered " + objectToBePluggedIn);
+        if (!HasObjectCord && !HasObjectToBePowered)
+        {
+            Debug.Log("Player has tried to power something, but is missing one of the components");
+        }
+        else
+        {
+            Debug.Log("Player has powered " + objectToBePowered + " with " + objectCord);
+        }
         base.InteractWith();
     }
 }
