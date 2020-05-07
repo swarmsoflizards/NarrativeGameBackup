@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ToggleSetActive : InteractiveObject //Child of InteractiveObject, inherits all functionality
-{   [Tooltip("The GameObject to toggle")]
+{
+    [Tooltip("The GameObject to toggle")]
     [SerializeField] private GameObject objectToToggle;
 
     [Tooltip("Can the player interact with this more than once?")]

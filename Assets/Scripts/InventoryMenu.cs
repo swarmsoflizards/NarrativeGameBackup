@@ -7,8 +7,6 @@ using TMPro;
 
 public class InventoryMenu : MonoBehaviour
 {
-
-
     [Tooltip("The prefab to go in the list of inventory items")]
     [SerializeField] private GameObject inventoryMenuItemTogglePrefab;
     [Tooltip("Content of the scrollview for the list of inventory items")]
@@ -51,6 +49,10 @@ public class InventoryMenu : MonoBehaviour
         GameObject clone = Instantiate(inventoryMenuItemTogglePrefab, inventoryListContentArea);
         InventoryMenuItemToggle toggle = clone.GetComponent<InventoryMenuItemToggle>();
         toggle.AssociatedInventoryObject = inventoryObjectToAdd;
+        //if (inventoryObjectToAdd.GetComponent<CraftingObject>() != null) & ()
+        //{
+            
+        //}
     }
 
     public void ExitMenuButtonClicked()
@@ -119,7 +121,7 @@ public class InventoryMenu : MonoBehaviour
         if (instance == null)
             instance = this;
         else
-            throw new System.Exception("There is already an instance of InventoryMeny in the scene.");
+            throw new System.Exception("There is already an instance of InventoryMenu in the scene.");
 
         canvasGroup = GetComponent<CanvasGroup>(); //Initialize canvas group
         rigidbodyFirstPersonController = FindObjectOfType<RigidbodyFirstPersonController>(); //Search whole scene for controller and assign to instance
