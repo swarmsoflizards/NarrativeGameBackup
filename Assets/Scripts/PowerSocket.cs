@@ -14,6 +14,9 @@ public class PowerSocket : InteractiveObject
     [Tooltip("Assign GameObject to power here")]
     [SerializeField] private InventoryObject objectCord;
 
+    [Tooltip("AudioClip that plays when the player charges the object")]
+    [SerializeField] private AudioSource chargedAudioClip;
+
     private bool HasObjectToBePowered => PlayerInventory.InventoryObjects.Contains(objectToBePowered);
     private bool HasObjectCord => PlayerInventory.InventoryObjects.Contains(objectCord);
 
@@ -25,6 +28,7 @@ public class PowerSocket : InteractiveObject
         }
         else
         {
+            chargedAudioClip.Play();
             Debug.Log("Player has powered " + objectToBePowered + " with " + objectCord);
         }
         base.InteractWith();
