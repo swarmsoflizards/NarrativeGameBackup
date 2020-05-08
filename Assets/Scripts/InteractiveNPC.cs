@@ -21,6 +21,18 @@ public class InteractiveNPC : InteractiveObject
     [SerializeField] private string dialogue1;
     [Tooltip("The 2nd line of dialogue the character will speak")]
     [SerializeField] private string dialogue2;
+    [Tooltip("The 3rd line of dialogue the character will speak")]
+    [SerializeField] private string dialogue3;
+    [Tooltip("The 4th line of dialogue the character will speak")]
+    [SerializeField] private string dialogue4;
+    [Tooltip("The 5th line of dialogue the character will speak")]
+    [SerializeField] private string dialogue5;
+    [Tooltip("The 6th line of dialogue the character will speak")]
+    [SerializeField] private string dialogue6;
+    [Tooltip("The 7th line of dialogue the character will speak")]
+    [SerializeField] private string dialogue7;
+    [Tooltip("The 8th line of dialogue the character will speak")]
+    [SerializeField] private string dialogue8;
 
     private int numberOfInteractions = 0;
 
@@ -48,11 +60,20 @@ public class InteractiveNPC : InteractiveObject
             displayText = dialogue1;
         else if (numberOfInteractions == 1)
             displayText = dialogue2;
-    }
-
-    private void TakePlayerResponse()
-    {
-
+        else if (numberOfInteractions == 2)
+            displayText = dialogue3;
+        else if (numberOfInteractions == 3)
+            displayText = dialogue4;
+        else if (numberOfInteractions == 4)
+            displayText = dialogue5;
+        else if (numberOfInteractions == 5)
+            displayText = dialogue6;
+        else if (numberOfInteractions == 6)
+            displayText = dialogue7;
+        else if (numberOfInteractions == 7)
+            displayText = dialogue8;
+        else if (numberOfInteractions >= 8)
+            displayText = null;
     }
 
 }
