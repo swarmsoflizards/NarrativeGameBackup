@@ -17,9 +17,9 @@ public class InteractiveNPC : InteractiveObject
     [Tooltip("The character's name, to display on raycast")]
     [SerializeField] private string NPCName;
 
-    [Tooltip("The first line of dialogue the character will speak")]
+    [Tooltip("The 1st line of dialogue the character will speak")]
     [SerializeField] private string dialogue1;
-    [Tooltip("The second line of dialogue the character will speak")]
+    [Tooltip("The 2nd line of dialogue the character will speak")]
     [SerializeField] private string dialogue2;
 
     private int numberOfInteractions = 0;
@@ -29,16 +29,15 @@ public class InteractiveNPC : InteractiveObject
         displayText = NPCName;
     }
 
-    public override void Awake()
+    protected override void Awake()
     {
-        
+        base.Awake();
     }
 
     public override void InteractWith()
     {
         Debug.Log("Number of interactions with " + NPCName + ": " + numberOfInteractions);
         SpeakNPCDialogue();
-        TakePlayerResponse();
         base.InteractWith();
         numberOfInteractions++;
     }

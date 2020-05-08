@@ -11,9 +11,8 @@ using TMPro;
 public class LookedAtInteractiveDisplayText : MonoBehaviour
 {
     private IInteractive lookedAtInteractive;
-    //private TMP_Text displayText;
     [Tooltip("Text field to display interactive object text")]
-    [SerializeField] private TMP_Text displayText;
+    [SerializeField] protected TMP_Text displayText;
 
     private void Awake()
     {
