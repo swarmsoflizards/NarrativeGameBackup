@@ -13,7 +13,7 @@ public class InteractiveObject : MonoBehaviour, IInteractive
     public virtual string DisplayText => displayText; //Take DisplayText from IInteractive and set it to displayText 
     protected AudioSource audioSource;
 
-    protected virtual void Awake()
+    public virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }

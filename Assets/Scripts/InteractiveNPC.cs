@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// This script controlls the behavior of NPCs, which are just different Interactive Objects.
@@ -28,16 +29,21 @@ public class InteractiveNPC : InteractiveObject
         displayText = NPCName;
     }
 
+    public override void Awake()
+    {
+        
+    }
+
     public override void InteractWith()
     {
         Debug.Log("Number of interactions with " + NPCName + ": " + numberOfInteractions);
-        SpeakDialogue();
-        TakeResponse();
+        SpeakNPCDialogue();
+        TakePlayerResponse();
         base.InteractWith();
         numberOfInteractions++;
     }
 
-    private void SpeakDialogue()
+    private void SpeakNPCDialogue()
     {
         if (numberOfInteractions == 0)
             displayText = dialogue1;
@@ -45,14 +51,8 @@ public class InteractiveNPC : InteractiveObject
             displayText = dialogue2;
     }
 
-    private void TakeResponse()
+    private void TakePlayerResponse()
     {
-
-    }
-
-    private void UpdateDialogue()
-    {
-
 
     }
 
