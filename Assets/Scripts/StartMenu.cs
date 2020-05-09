@@ -77,7 +77,6 @@ public class StartMenu : MonoBehaviour
 
     public void ExitGame() //Press quit button
     { 
-        Debug.Log("Quit game");
         Application.Quit();
     }
 }
