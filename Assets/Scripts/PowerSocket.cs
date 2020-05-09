@@ -14,11 +14,22 @@ public class PowerSocket : InteractiveObject
     [Tooltip("Assign GameObject to power here")]
     [SerializeField] private InventoryObject objectCord;
 
+    [Tooltip("Enter the text that will display when the player can interact with the power socket")]
+    [SerializeField] private string interactableDisplayText;
+
     [Tooltip("AudioClip that plays when the player charges the object")]
     [SerializeField] private AudioSource chargedAudioClip;
 
+    private bool hasBeenInteractedWith = false;
+
     private bool HasObjectToBePowered => PlayerInventory.InventoryObjects.Contains(objectToBePowered);
     private bool HasObjectCord => PlayerInventory.InventoryObjects.Contains(objectCord);
+
+    private void FixedUpdate()
+    {
+        if (HasObjectCord && HasObjectToBePowered)
+            displayText = interactableDisplayText;
+    }
 
     public override void InteractWith()
     {
@@ -30,6 +41,7 @@ public class PowerSocket : InteractiveObject
         {
             chargedAudioClip.Play();
             Debug.Log("Player has powered " + objectToBePowered + " with " + objectCord);
+            hasBeenInteractedWith = true;
         }
         base.InteractWith();
     }
