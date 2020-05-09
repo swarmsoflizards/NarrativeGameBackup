@@ -25,6 +25,11 @@ public class EndMenu : MonoBehaviour
         audioSource.Play();
     }
 
+    private void GameOver()
+    {
+        OpenEndMenu();
+    }
+
     private void OpenEndMenu()
     {
         endMenuCanvas.SetActive(true);

@@ -49,10 +49,6 @@ public class InventoryMenu : MonoBehaviour
         GameObject clone = Instantiate(inventoryMenuItemTogglePrefab, inventoryListContentArea);
         InventoryMenuItemToggle toggle = clone.GetComponent<InventoryMenuItemToggle>();
         toggle.AssociatedInventoryObject = inventoryObjectToAdd;
-        //if (inventoryObjectToAdd.GetComponent<CraftingObject>() != null) & ()
-        //{
-            
-        //}
     }
 
     public void ExitMenuButtonClicked()
