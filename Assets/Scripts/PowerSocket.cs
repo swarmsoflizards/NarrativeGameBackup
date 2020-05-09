@@ -20,6 +20,11 @@ public class PowerSocket : InteractiveObject
     [Tooltip("AudioClip that plays when the player charges the object")]
     [SerializeField] private AudioSource chargedAudioClip;
 
+    [Tooltip("Assign Father instance to spawn here")]
+    [SerializeField] private InteractiveNPC FatherInstance2;
+    [Tooltip("Assign GameObject to power here")]
+    [SerializeField] private Vector3 fatherInstantiateLocation;
+
     private bool hasBeenInteractedWith = false;
 
     private bool HasObjectToBePowered => PlayerInventory.InventoryObjects.Contains(objectToBePowered);
@@ -29,6 +34,12 @@ public class PowerSocket : InteractiveObject
     {
         if (HasObjectCord && HasObjectToBePowered)
             displayText = interactableDisplayText;
+
+        if (hasBeenInteractedWith)
+        {
+            Instantiate(FatherInstance2);
+            FatherInstance2.transform.position = fatherInstantiateLocation;
+        }
     }
 
     public override void InteractWith()
