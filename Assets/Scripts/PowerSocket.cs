@@ -35,11 +35,7 @@ public class PowerSocket : InteractiveObject
         if (HasObjectCord && HasObjectToBePowered)
             displayText = interactableDisplayText;
 
-        if (hasBeenInteractedWith)
-        {
-            Instantiate(FatherInstance2);
-            FatherInstance2.transform.position = fatherInstantiateLocation;
-        }
+
     }
 
     public override void InteractWith()
@@ -53,6 +49,11 @@ public class PowerSocket : InteractiveObject
             chargedAudioClip.Play();
             Debug.Log("Player has powered " + objectToBePowered + " with " + objectCord);
             hasBeenInteractedWith = true;
+            if (hasBeenInteractedWith)
+            {
+                Instantiate(FatherInstance2);
+                FatherInstance2.transform.position = fatherInstantiateLocation;
+            }
         }
         base.InteractWith();
     }
