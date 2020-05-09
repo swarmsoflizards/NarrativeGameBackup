@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class EndMenu : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EndMenu : MonoBehaviour
     [SerializeField] private GameObject endMenuCanvas;
 
     private AudioSource audioSource;
+    private RigidbodyFirstPersonController rigidbodyFirstPersonController; 
 
     private void Awake()
     {
@@ -21,6 +23,14 @@ public class EndMenu : MonoBehaviour
     public void PlaySoundEffect()
     {
         audioSource.Play();
+    }
+
+    private void OpenEndMenu()
+    {
+        endMenuCanvas.SetActive(true);
+        rigidbodyFirstPersonController.enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void LoadMenuScene()
