@@ -210,7 +210,8 @@ MonoBehaviour:
   dialogue3: "\"Don\u2019t you remember the way people were hunched over, glued to
     those stupid things?\""
   dialogue4: "\"We\u2019re better off without that garbage!\""
-  dialogue5: 
-  dialogue6: 
-  dialogue7: 
+  dialogue5: "//Show him the phone. It\u2019s something that\u2019ll impress him,
+    decide later ugh"
+  dialogue6: '... '
+  dialogue7: '"Hmph."'
   dialogue8: 
