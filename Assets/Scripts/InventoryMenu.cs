@@ -16,10 +16,14 @@ public class InventoryMenu : MonoBehaviour
     [Tooltip("Place in the UI for displaying info about the selected inventory item")]
     [SerializeField] private TMP_Text descriptionAreaText;
 
+    [Tooltip("The AudioSource to play when the player interacts with the inventory buttons")]
+    [SerializeField] private AudioSource audioSourceButton; //ONLY FOR EXIT BUTTON
+
     private static InventoryMenu instance;
     private CanvasGroup canvasGroup;
     private RigidbodyFirstPersonController rigidbodyFirstPersonController;
     private AudioSource audioSource;
+
 
     public static InventoryMenu Instance
     {
@@ -49,6 +53,7 @@ public class InventoryMenu : MonoBehaviour
 
     public void ExitMenuButtonClicked()
     {
+        audioSourceButton.Play();
         HideMenu();
     }
     
@@ -95,9 +100,14 @@ public class InventoryMenu : MonoBehaviour
     {
         if (Input.GetButtonDown("InventoryToggle"))
             if (IsVisible)
+            {
                 HideMenu();
+            }
             else
+            {
                 ShowMenu();
+            }
+                
     }
     #endregion
 
@@ -107,7 +117,7 @@ public class InventoryMenu : MonoBehaviour
         if (instance == null)
             instance = this;
         else
-            throw new System.Exception("There is already an instance of InventoryMeny in the scene.");
+            throw new System.Exception("There is already an instance of InventoryMenu in the scene.");
 
         canvasGroup = GetComponent<CanvasGroup>(); //Initialize canvas group
         rigidbodyFirstPersonController = FindObjectOfType<RigidbodyFirstPersonController>(); //Search whole scene for controller and assign to instance
@@ -125,7 +135,7 @@ public class InventoryMenu : MonoBehaviour
 
         audioSource.volume = 0; //Set sound effect volume to 0
         yield return new WaitForSeconds(audioSource.clip.length); //Wait for sound effect to play at 0
-        audioSource.volume = originalVolume; //Return volume to normal
+        audioSource.volume = 2; //Return volume to normal
     }
     #endregion
 }
