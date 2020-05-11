@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script controls the flashing of the low battery display on the phone
+/// </summary>
 public class PhoneDisplayControl : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Tooltip("The display GameObject to toggle")]
+    [SerializeField] GameObject displayObject;
+
+    [Tooltip("The display GameObject to toggle")]
+    [SerializeField] float lengthOfFlash;
+
+
+    private void Start()
     {
-        
+        displayObject.SetActive(false);
+        StartCoroutine(WaitToFlash()); 
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator WaitToFlash()
     {
-        
+        yield return new WaitForSeconds(lengthOfFlash);
+        displayObject.SetActive(true);
+        yield return new WaitForSeconds(lengthOfFlash);
+        displayObject.SetActive(false);
+        yield return new WaitForSeconds(lengthOfFlash);
+        displayObject.SetActive(true);
+        yield return new WaitForSeconds(lengthOfFlash);
+        displayObject.SetActive(false);
     }
 }
