@@ -34,7 +34,6 @@ public class PhoneDisplayControl : MonoBehaviour
             yield return new WaitForSeconds(lengthOfFlash);
             displayObject.SetActive(false);
             numberOfFlashes++;
-            Debug.Log("Flashed " + numberOfFlashes);
         }
 
     }

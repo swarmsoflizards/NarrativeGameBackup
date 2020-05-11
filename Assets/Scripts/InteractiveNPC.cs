@@ -48,7 +48,7 @@ public class InteractiveNPC : InteractiveObject
 
     public override void InteractWith()
     {
-        Debug.Log("Number of interactions with " + NPCName + ": " + numberOfInteractions);
+        //Debug.Log("Number of interactions with " + NPCName + ": " + numberOfInteractions);
         SpeakNPCDialogue();
         base.InteractWith();
         numberOfInteractions++;
