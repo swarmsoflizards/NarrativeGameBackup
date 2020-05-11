@@ -13,22 +13,30 @@ public class PhoneDisplayControl : MonoBehaviour
     [Tooltip("The display GameObject to toggle")]
     [SerializeField] float lengthOfFlash;
 
+    [Tooltip("The number of times the display flashes")]
+    [SerializeField] float maxNumberOfFlashes;
+
+    private int numberOfFlashes = 0;
 
     private void Start()
     {
         displayObject.SetActive(false);
-        StartCoroutine(WaitToFlash()); 
+        StartCoroutine(WaitToFlash());
     }
+
 
     private IEnumerator WaitToFlash()
     {
-        yield return new WaitForSeconds(lengthOfFlash);
-        displayObject.SetActive(true);
-        yield return new WaitForSeconds(lengthOfFlash);
-        displayObject.SetActive(false);
-        yield return new WaitForSeconds(lengthOfFlash);
-        displayObject.SetActive(true);
-        yield return new WaitForSeconds(lengthOfFlash);
-        displayObject.SetActive(false);
+        while (numberOfFlashes <= maxNumberOfFlashes)
+        {
+            yield return new WaitForSeconds(lengthOfFlash);
+            displayObject.SetActive(true);
+            yield return new WaitForSeconds(lengthOfFlash);
+            displayObject.SetActive(false);
+            numberOfFlashes++;
+            Debug.Log("Flashed " + numberOfFlashes);
+        }
+
     }
+
 }
