@@ -56,9 +56,7 @@ public class InteractiveNPC : InteractiveObject
         base.InteractWith();
         numberOfInteractions++;
         if (dialogueToDisplay == null)
-        {
-
-        }
+            hasFinishedInteracting = true;
     }
 
     private void SpeakNPCDialogue()
