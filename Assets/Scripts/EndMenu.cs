@@ -12,9 +12,10 @@ public class EndMenu : MonoBehaviour
     [Tooltip("End menu panel")]
     [SerializeField] private GameObject endMenuPanel;
 
-    [Tooltip("The InteractiveNPC who, when the player is done interacting with them, will trigger the end of the game")]
-    [SerializeField] private InteractiveNPC father2;
+    //[Tooltip("The InteractiveNPC who, when the player is done interacting with them, will trigger the end of the game")]
+    //[SerializeField] private InteractiveNPC father2;
 
+    public bool shouldTriggerEnd;
     private AudioSource audioSource;
     private RigidbodyFirstPersonController rigidbodyFirstPersonController;
 
@@ -29,14 +30,6 @@ public class EndMenu : MonoBehaviour
         rigidbodyFirstPersonController.enabled = true; //Must be enabled after cursor lock
     }
 
-    private void FixedUpdate()
-    {
-        if (father2.hasFinishedInteracting == true)
-        {
-            OpenEndMenu();
-        }
-    }
-
     public void PlaySoundEffect()
     {
         audioSource.Play();
@@ -48,7 +41,7 @@ public class EndMenu : MonoBehaviour
         ExitGame();
     }
 
-    private void OpenEndMenu()
+    public void OpenEndMenu()
     {
         endMenuPanel.SetActive(true);
         //endMenuPanel.interactable = true;

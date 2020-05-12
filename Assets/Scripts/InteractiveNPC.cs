@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 /// <summary>
 /// This script controlls the behavior of NPCs, which are just different Interactive Objects.
@@ -13,6 +14,8 @@ public class InteractiveNPC : InteractiveObject
 {
     [Tooltip("AudioClip that plays when the player interacts with NPC")]
     [SerializeField] private AudioClip audioClip;
+    [Tooltip("The End Menu canvas")]
+    [SerializeField] private Canvas EndCanvas;
 
     [Tooltip("The character's name, to display on raycast")]
     [SerializeField] private string NPCName;
@@ -34,6 +37,9 @@ public class InteractiveNPC : InteractiveObject
     [Tooltip("The 8th line of dialogue the character will speak")]
     [SerializeField] private string dialogue8;
 
+    [Tooltip("Should the end of interaction with this NPC trigger the end of the game?")]
+    [SerializeField] private bool shouldTriggerEndOfGame;
+
     private string dialogueToDisplay;
     private int numberOfInteractions = 0;
     public bool hasFinishedInteracting = false;
@@ -46,6 +52,14 @@ public class InteractiveNPC : InteractiveObject
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void FixedUpdate()
+    {
+        if (hasFinishedInteracting && shouldTriggerEndOfGame)
+        {
+            EndCanvas.GetComponent<EndMenu>().OpenEndMenu();
+        }
     }
 
     public override void InteractWith()

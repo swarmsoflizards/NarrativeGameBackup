@@ -204,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayText: Father
   audioClip: {fileID: 0}
+  EndCanvas: {fileID: 0}
   NPCName: Father
   dialogue1: "\"I can\u2019t believe you would break into my garage!\""
   dialogue2: '"And for what, a phone?"'
@@ -215,3 +216,5 @@ MonoBehaviour:
   dialogue6: '... '
   dialogue7: '"Hmph."'
   dialogue8: 
+  shouldTriggerEndOfGame: 1
+  hasFinishedInteracting: 0
