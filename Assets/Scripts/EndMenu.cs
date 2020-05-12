@@ -11,13 +11,25 @@ public class EndMenu : MonoBehaviour
     [Tooltip("End menu panel")]
     [SerializeField] private GameObject endMenuCanvas;
 
+    [Tooltip("The InteractiveNPC who, when the player is done interacting with them, will trigger the end of the game")]
+    [SerializeField] private InteractiveNPC father2;
+
     private AudioSource audioSource;
-    private RigidbodyFirstPersonController rigidbodyFirstPersonController; 
+    private RigidbodyFirstPersonController rigidbodyFirstPersonController;
+
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         endMenuCanvas.SetActive(false);
+    }
+
+    private void FixedUpdate()
+    {
+        if (father2.hasFinishedInteracting == true)
+        {
+            GameOver();
+        }
     }
 
     public void PlaySoundEffect()

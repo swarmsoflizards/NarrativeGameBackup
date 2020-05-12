@@ -35,6 +35,7 @@ public class InteractiveNPC : InteractiveObject
     [SerializeField] private string dialogue8;
 
     private int numberOfInteractions = 0;
+    bool hasFinishedInteracting = false;
 
     public InteractiveNPC()
     {
@@ -73,7 +74,10 @@ public class InteractiveNPC : InteractiveObject
         else if (numberOfInteractions == 7)
             displayText = dialogue8;
         else if (numberOfInteractions >= 8)
+        {
             displayText = null;
+            hasFinishedInteracting = true;
+        }
     }
 
 }
