@@ -34,8 +34,9 @@ public class InteractiveNPC : InteractiveObject
     [Tooltip("The 8th line of dialogue the character will speak")]
     [SerializeField] private string dialogue8;
 
+    private string dialogueToDisplay;
     private int numberOfInteractions = 0;
-    bool hasFinishedInteracting = false;
+    public bool hasFinishedInteracting = false;
 
     public InteractiveNPC()
     {
@@ -51,31 +52,36 @@ public class InteractiveNPC : InteractiveObject
     {
         //Debug.Log("Number of interactions with " + NPCName + ": " + numberOfInteractions);
         SpeakNPCDialogue();
+        displayText = dialogueToDisplay;
         base.InteractWith();
         numberOfInteractions++;
+        if (dialogueToDisplay == null)
+        {
+
+        }
     }
 
     private void SpeakNPCDialogue()
     {
         if (numberOfInteractions == 0)
-            displayText = dialogue1;
+            dialogueToDisplay = dialogue1;
         else if (numberOfInteractions == 1)
-            displayText = dialogue2;
+            dialogueToDisplay = dialogue2;
         else if (numberOfInteractions == 2)
-            displayText = dialogue3;
+            dialogueToDisplay = dialogue3;
         else if (numberOfInteractions == 3)
-            displayText = dialogue4;
+            dialogueToDisplay = dialogue4;
         else if (numberOfInteractions == 4)
-            displayText = dialogue5;
+            dialogueToDisplay = dialogue5;
         else if (numberOfInteractions == 5)
-            displayText = dialogue6;
+            dialogueToDisplay = dialogue6;
         else if (numberOfInteractions == 6)
-            displayText = dialogue7;
+            dialogueToDisplay = dialogue7;
         else if (numberOfInteractions == 7)
-            displayText = dialogue8;
+            dialogueToDisplay = dialogue8;
         else if (numberOfInteractions >= 8)
         {
-            displayText = null;
+            dialogueToDisplay = null;
             hasFinishedInteracting = true;
         }
     }
