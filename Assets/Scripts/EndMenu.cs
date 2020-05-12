@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.UI;
 
 public class EndMenu : MonoBehaviour
 {
@@ -41,10 +42,16 @@ public class EndMenu : MonoBehaviour
         audioSource.Play();
     }
 
+    public void ExitGameButtonClicked()
+    {
+        PlaySoundEffect();
+        ExitGame();
+    }
 
     private void OpenEndMenu()
     {
         endMenuPanel.SetActive(true);
+        //endMenuPanel.interactable = true;
         rigidbodyFirstPersonController.enabled = false; //Must be disabled before cursor unlock
         Cursor.visible = true; //Shows cursor
         Cursor.lockState = CursorLockMode.None; //Unlocks cursor
