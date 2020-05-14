@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 /// <summary>
 /// This script controlls the behavior of NPCs, which are just different Interactive Objects.
@@ -13,6 +14,8 @@ public class InteractiveNPC : InteractiveObject
 {
     [Tooltip("AudioClip that plays when the player interacts with NPC")]
     [SerializeField] private AudioClip audioClip;
+    [Tooltip("The End Menu canvas")]
+    [SerializeField] private Canvas EndCanvas;
 
     [Tooltip("The character's name, to display on raycast")]
     [SerializeField] private string NPCName;
@@ -34,7 +37,12 @@ public class InteractiveNPC : InteractiveObject
     [Tooltip("The 8th line of dialogue the character will speak")]
     [SerializeField] private string dialogue8;
 
+    [Tooltip("Should the end of interaction with this NPC trigger the end of the game?")]
+    [SerializeField] private bool shouldTriggerEndOfGame;
+
+    private string dialogueToDisplay;
     private int numberOfInteractions = 0;
+    public bool hasFinishedInteracting = false;
 
     public InteractiveNPC()
     {
@@ -46,34 +54,48 @@ public class InteractiveNPC : InteractiveObject
         base.Awake();
     }
 
+    private void FixedUpdate()
+    {
+        if (hasFinishedInteracting && shouldTriggerEndOfGame)
+        {
+            EndCanvas.GetComponent<EndMenu>().OpenEndMenu();
+        }
+    }
+
     public override void InteractWith()
     {
-        Debug.Log("Number of interactions with " + NPCName + ": " + numberOfInteractions);
+        //Debug.Log("Number of interactions with " + NPCName + ": " + numberOfInteractions);
         SpeakNPCDialogue();
+        displayText = dialogueToDisplay;
         base.InteractWith();
         numberOfInteractions++;
+        if (dialogueToDisplay == null)
+            hasFinishedInteracting = true;
     }
 
     private void SpeakNPCDialogue()
     {
         if (numberOfInteractions == 0)
-            displayText = dialogue1;
+            dialogueToDisplay = dialogue1;
         else if (numberOfInteractions == 1)
-            displayText = dialogue2;
+            dialogueToDisplay = dialogue2;
         else if (numberOfInteractions == 2)
-            displayText = dialogue3;
+            dialogueToDisplay = dialogue3;
         else if (numberOfInteractions == 3)
-            displayText = dialogue4;
+            dialogueToDisplay = dialogue4;
         else if (numberOfInteractions == 4)
-            displayText = dialogue5;
+            dialogueToDisplay = dialogue5;
         else if (numberOfInteractions == 5)
-            displayText = dialogue6;
+            dialogueToDisplay = dialogue6;
         else if (numberOfInteractions == 6)
-            displayText = dialogue7;
+            dialogueToDisplay = dialogue7;
         else if (numberOfInteractions == 7)
-            displayText = dialogue8;
+            dialogueToDisplay = dialogue8;
         else if (numberOfInteractions >= 8)
-            displayText = null;
+        {
+            dialogueToDisplay = null;
+            hasFinishedInteracting = true;
+        }
     }
 
 }

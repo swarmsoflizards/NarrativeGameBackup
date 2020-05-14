@@ -3,21 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.UI;
 
 public class EndMenu : MonoBehaviour
 {
     [Tooltip("Start menu scene")]
     [SerializeField] private string menuSceneName;
     [Tooltip("End menu panel")]
-    [SerializeField] private GameObject endMenuCanvas;
+    [SerializeField] private GameObject endMenuPanel;
 
+    //[Tooltip("The InteractiveNPC who, when the player is done interacting with them, will trigger the end of the game")]
+    //[SerializeField] private InteractiveNPC father2;
+
+    public bool shouldTriggerEnd;
     private AudioSource audioSource;
-    private RigidbodyFirstPersonController rigidbodyFirstPersonController; 
+    private RigidbodyFirstPersonController rigidbodyFirstPersonController;
+
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        endMenuCanvas.SetActive(false);
+        rigidbodyFirstPersonController = FindObjectOfType<RigidbodyFirstPersonController>(); //Search whole scene for controller and assign to instance
+        endMenuPanel.SetActive(false);
+        Cursor.visible = false; //Hides cursor
+        Cursor.lockState = CursorLockMode.Locked; //Locks cursor
+        rigidbodyFirstPersonController.enabled = true; //Must be enabled after cursor lock
     }
 
     public void PlaySoundEffect()
@@ -25,17 +35,19 @@ public class EndMenu : MonoBehaviour
         audioSource.Play();
     }
 
-    private void GameOver()
+    public void ExitGameButtonClicked()
     {
-        OpenEndMenu();
+        PlaySoundEffect();
+        ExitGame();
     }
 
-    private void OpenEndMenu()
+    public void OpenEndMenu()
     {
-        endMenuCanvas.SetActive(true);
-        rigidbodyFirstPersonController.enabled = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        endMenuPanel.SetActive(true);
+        //endMenuPanel.interactable = true;
+        rigidbodyFirstPersonController.enabled = false; //Must be disabled before cursor unlock
+        Cursor.visible = true; //Shows cursor
+        Cursor.lockState = CursorLockMode.None; //Unlocks cursor
     }
 
     public void LoadMenuScene()

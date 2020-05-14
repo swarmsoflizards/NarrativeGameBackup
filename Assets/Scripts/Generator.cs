@@ -53,9 +53,16 @@ public class Generator : InteractiveObject
     {
         base.Awake();
         animator = GetComponent<Animator>();
+        powerSocketToToggle.SetActive(true); 
         isActive = false;
     }
-        
+
+    private void Start()
+    {
+        powerSocketToToggle.SetActive(false);
+
+    }
+
     public override void InteractWith()
     {
         if (!isActive) //if inactive
@@ -77,7 +84,7 @@ public class Generator : InteractiveObject
             audioSource.clip = switchAudioClip;
             animator.SetBool("shouldRun", false);
             displayText = inactiveDisplayText;
-            Deactivate();
+            //Deactivate();
         }
         base.InteractWith(); //Call all functionality in parent method
     }
