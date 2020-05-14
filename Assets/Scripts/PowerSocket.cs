@@ -20,15 +20,24 @@ public class PowerSocket : InteractiveObject
     [Tooltip("AudioClip that plays when the player charges the object")]
     [SerializeField] private AudioSource chargedAudioClip;
 
-    [Tooltip("Assign Father instance to spawn here")]
-    [SerializeField] private InteractiveNPC FatherInstance2;
-    [Tooltip("Assign GameObject to power here")]
-    [SerializeField] private Vector3 fatherInstantiateLocation;
+    [Tooltip("Assign Father instance to activate/deactivate here")]
+    [SerializeField] private GameObject FatherInstance2Holder;
+    //[Tooltip("Assign GameObject to power here")]
+    //[SerializeField] private Vector3 fatherInstantiateLocation;
 
+    private bool isActive = true;
     private bool hasBeenInteractedWith = false;
 
     private bool HasObjectToBePowered => PlayerInventory.InventoryObjects.Contains(objectToBePowered);
     private bool HasObjectCord => PlayerInventory.InventoryObjects.Contains(objectCord);
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Debug.Log("PowerSocket is awake!");
+        FatherInstance2Holder.SetActive(false);
+        //isActive = false;
+    }
 
     private void FixedUpdate()
     {
@@ -51,8 +60,9 @@ public class PowerSocket : InteractiveObject
             hasBeenInteractedWith = true;
             if (hasBeenInteractedWith)
             {
-                Instantiate(FatherInstance2);
-                FatherInstance2.transform.position = fatherInstantiateLocation;
+                FatherInstance2Holder.SetActive(true);
+                //Instantiate(FatherInstance2);
+                //FatherInstance2.transform.position = fatherInstantiateLocation;
             }
         }
         base.InteractWith();
